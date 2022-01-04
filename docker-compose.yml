@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+         productpage:  
+                     build: productpage
+                     image: 02/productpage 
+                     ports:
+                           - "9080:9080"
+                     container_name: 02-productpage
+         ratings: 
+                 build: ratings/
+                 image: 02/ratings
+                 container_name: 02-ratings
+         reviews:
+                build: reviews/reviews-wlpcfg
+                image: 02/reviews:v3
+                container_name: 02-reviews
+                environment:
+                           - ENABLE_RATINGS=true                                                   
+         details:
+                build: details/
+                image: 02/details
+                container_name: 02-details
