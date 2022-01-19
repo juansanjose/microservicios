@@ -1,22 +1,32 @@
 version: "3.9"
 services:
-         productpage:  
+         productpage:
                      build: productpage
-                     image: 02/productpage 
+                     image: 02/productpage
                      ports:
                            - "9080:9080"
                      container_name: 02-productpage
-         ratings: 
+         ratings:
                  build: ratings/
                  image: 02/ratings
                  container_name: 02-ratings
+                 volumes:
+                  - ratings:/home/juansj2000/intento2/practica_creativa2/bookinfo/src/ratings
          reviews:
                 build: reviews/reviews-wlpcfg
                 image: 02/reviews:v3
                 container_name: 02-reviews
+                volumes:
+                  - reviews:/home/juansj2000/intento2/practica_creativa2/bookinfo/src/reviews
                 environment:
-                           - ENABLE_RATINGS=true                                                   
+                           - ENABLE_RATINGS=true
          details:
                 build: details/
                 image: 02/details
                 container_name: 02-details
+                volumes:
+                  - details:/home/juansj2000/intento2/practica_creativa2/bookinfo/src/details
+volumes:
+  ratings:
+  reviews:
+  details:
